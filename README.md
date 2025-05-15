@@ -1,10 +1,3 @@
-Perfeito, Sara! Com base no seu código CSS e no componente React (`Login.jsx`), aqui está um **README.md completo** e uma **explicação clara do projeto**, ideal para documentação ou envio em repositório público:
-
----
-
-## 📄 README.md
-
-
 # 🚀 Tela de Login Espacial - React
 
 Uma tela de login moderna e altamente visual, inspirada no estilo futurista. Este projeto utiliza React para estrutura e CSS customizado para criar um ambiente animado e imersivo com astronauta flutuante, estrelas girando, nuvens e um planeta em rotação.
@@ -65,26 +58,27 @@ Uma tela de login moderna e altamente visual, inspirada no estilo futurista. Est
 
 1. Clone o repositório:
 
+```
    git clone https://github.com/saracristinas/Sistema-E-commerce.git
-````
+```
 
 2. Acesse a pasta e instale as dependências:
 
    ```
-   cd nome-do-repo
+   cd nome-do-repositorio
    npm install
    ```
 
 3. Inicie o projeto:
 
    ```
-   npm start
+   npm run dev
    ```
 
 4. Acesse no navegador:
 
    ```
-   http://localhost:3000
+   http://localhost:5173/
    ```
 
 ---
@@ -98,7 +92,7 @@ Uma tela de login moderna e altamente visual, inspirada no estilo futurista. Est
 
 ## 🙋‍♀️ Autora
 
-Projeto desenvolvido por ``` Sara ``` como parte de um sistema de adoção com interface inspirada em elementos espaciais.
+Projeto Front desenvolvido por Sara como parte de um sistema de e-commerce com interface inspirada em elementos espaciais.
 
 ```
 
@@ -108,7 +102,7 @@ Projeto desenvolvido por ``` Sara ``` como parte de um sistema de adoção com i
 
 Este componente React representa uma tela de login estilizada com um forte apelo visual e elementos de animação espacial.
 O objetivo é oferecer uma experiência única ao usuário logo no primeiro contato com a aplicação, principalmente em projetos
-como um sistema de adoção onde o apelo emocional e a imersão fazem diferença.
+como um sistema de e-commerce onde o visual e a imersão fazem diferença.
 
 A tela é composta por:
 
