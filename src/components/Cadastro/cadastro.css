@@ -1,0 +1,358 @@
+@font-face {
+  font-family: "Amrys ExtraBold";
+  src: url("/fonts/Amrys-ExtraBold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ========================================
+    CONTAINER GERAL DA PÁGINA DE CADASTRO
+======================================== */
+.cadastro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    hsl(270deg, 70%, 20%) 8%,
+    hsl(275deg, 65%, 28%) 31%,
+    hsl(280deg, 60%, 36%) 60%,
+    hsl(280deg, 60%, 36%) 100%
+  );
+}
+
+/* ========================================
+    BACKGROUND: ESTRELAS FIXAS E GIRANDO (REUTILIZADO)
+======================================== */
+.stars-holder {
+  position: absolute;
+  inset: -20px -60px -40px -60px;
+  z-index: -6;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fixed-stars,
+.spinning-stars,
+.side-rocks {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+}
+
+.fixed-stars {
+  opacity: 0.8;
+  z-index: -6;
+}
+
+.spinning-stars {
+  animation: spin 150s linear infinite; /* MAIS DEVAGAR */
+  opacity: 0.75;
+  z-index: -6;
+}
+
+.side-rocks {
+  z-index: -6;
+}
+
+/* Animação de rotação suave DAS ESTRELAS (REUTILIZADO)*/
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  } /* FAZ AS ESTRELAS GIRAREM SENTIDO HORARIO OU ANTIHORARIO */
+}
+
+/* ========================================
+    BACKGROUND: TEXTO DESLIZANTE (LETREIRO) - MODIFICADO PARA CADASTRO
+======================================== */
+.marquee-container {
+  position: absolute;
+  top: 22%;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 5; /* atrás do astronauta, acima das nuvens */
+  mask-image: linear-gradient(to right, black 80%, transparent 100%);
+}
+
+.marquee-track {
+  display: inline-block;
+  animation: marqueeScrollCadastro 60s linear infinite; /* NOVA ANIMAÇÃO */
+  font-size: 220px;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  font-family: "Amrys ExtraBold", sans-serif;
+  opacity: 0.9;
+}
+
+@keyframes marqueeScrollCadastro {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ========================================
+    ROCHAS DA FRENTE (ACIMA DE TUDO) (REUTILIZADO)
+======================================== */
+.front-rocks-holder {
+  position: absolute;
+  inset: -20px -60px -40px -60px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 7; /* acima de tudo */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.front-rocks {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: bottom;
+  opacity: 1;
+  transform: translateY(90px); /* Desce as rochas 30px */
+}
+
+/* ========================================
+    PLANETA GIRANDO COM ATMOSFERA (REUTILIZADO)
+======================================== */
+.planet-wrapper {
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55vh;
+  height: 55vh;
+  z-index: 1;
+}
+
+.planet-atmosphere {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  transform: translate(-10%, -10%);
+  opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.planet-img {
+  width: 100%;
+  height: auto;
+  z-index: 2;
+  position: relative;
+  animation: planetRotation 120s linear infinite; /* MAIS DEVAGAR */
+}
+
+@keyframes planetRotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  } /* GIRA O PLANETA PRO LADO HORARIO OU ANTIHORARIO */
+}
+
+/* ========================================
+    NUVENS EM CAMADAS (REUTILIZADO)
+======================================== */
+.clouds-holder {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.clouds-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.cloud-img {
+  position: absolute;
+  width: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+  object-fit: cover;
+  height: auto;
+  max-height: 100%;
+}
+
+.cloud-3 {
+  z-index: -5;
+  opacity: 0.9;
+  top: 4%;
+}
+
+.cloud-2 {
+  z-index: -4;
+  opacity: 0.5;
+  top: -3%;
+}
+
+.cloud-1 {
+  z-index: -3;
+  opacity: 0.85;
+  top: -4%;
+}
+
+/* ========================================
+    NAVE NO FUNDO INFERIOR (REUTILIZADO)
+======================================== */
+.spaceship-wrapper {
+  position: absolute;
+  inset: -20px -60px -40px -60px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 5;
+}
+
+.spaceship-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+/* ========================================
+    ASTRONAUTA FLUTUANDO (REUTILIZADO)
+======================================== */
+.space-bro-splash-holder {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+}
+
+.space-bro-splash {
+  position: relative;
+  display: inline-block;
+}
+
+.astronaut-img {
+  width: 100%;
+  max-width: 355px;
+  object-position: top;
+}
+
+/* ========================================
+    FORMULÁRIO DE CADASTRO - ESTILOS ADAPTADOS
+======================================== */
+.cadastro-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+  text-align: center;
+  margin-top: -39%;
+  backdrop-filter: blur(9px);
+  background-color: rgba(0, 0, 0, 0.4); /* fundo escuro sem esconder o fundo */
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+}
+
+.cadastro-title {
+  color: #fff;
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-family: "Arial", sans-serif;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.cadastro-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.cadastro-form input {
+  padding: 12px;
+  width: 300px;
+  border-radius: 5px;
+  border: 2px solid #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 16px;
+  transition: border 0.3s ease;
+}
+
+.cadastro-form input:focus {
+  outline: none;
+  border-color: #ff0;
+}
+
+.cadastro-form button {
+  padding: 12px 24px;
+  background: #ff0;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.cadastro-form button:hover {
+  background-color: #fff;
+  color: black;
+}
+
+/* ========================================
+    BOTÕES EXTRAS - ADAPTADO PARA CADASTRO
+======================================== */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.buttons button {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buttons button:hover {
+  background: #ff0;
+  color: black;
+}
