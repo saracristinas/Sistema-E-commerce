@@ -125,7 +125,7 @@ function Login() {
         {/* Botões adicionais */}
         <div className="buttons">
           <button onClick={() => navigate("/home")}>Página Inicial</button>
-          <button onClick={() => navigate("/login")}>Login</button>
+          <button onClick={() => navigate("/cadastro")}>Cadastre-se</button>
         </div>
       </div>
     </div>
