@@ -58,7 +58,7 @@ Uma tela de login moderna e altamente visual, inspirada no estilo futurista. Est
 
 1. Clone o repositório:
 
-```
+
    git clone https://github.com/saracristinas/Sistema-E-commerce.git
 ```
 
@@ -94,9 +94,9 @@ Uma tela de login moderna e altamente visual, inspirada no estilo futurista. Est
 
 Projeto Front desenvolvido por Sara como parte de um sistema de e-commerce com interface inspirada em elementos espaciais.
 
-```
 
----
+
+
 
 ## 🧠 Explicação do Projeto
 
@@ -112,5 +112,4 @@ A tela é composta por:
 - **Formulário funcional** com navegação para `/home` após o login simulado.
 - **CSS altamente detalhado** para garantir que todos os elementos visuais tenham o comportamento esperado mesmo com diferentes tamanhos de tela.
 
----
 
