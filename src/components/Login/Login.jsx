@@ -100,8 +100,8 @@ function Login() {
       </div>
 
       {/* Texto em background animado (LETREIRO) */}
-      <div className="marquee-container">
-        <div className="marquee-track">
+      <div className="letreiro-holder">
+        <div className="letreiro-texto">
           <span>BEM VINDO&nbsp;</span>
           <span>BEM VINDO&nbsp;</span>
           <span>BEM VINDO&nbsp;</span>

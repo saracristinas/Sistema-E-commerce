@@ -116,12 +116,12 @@ function Cadastro() {
       </div>
 
       {/* Texto em background animado (LETREIRO) */}
-      <div className="marquee-container">
-        <div className="marquee-track">
-          <span>CADASTRE-SE&nbsp;</span>
-          <span>CADASTRE-SE&nbsp;</span>
-          <span>CADASTRE-SE&nbsp;</span>
-          <span>CADASTRE-SE&nbsp;</span>
+      <div className="cadastro-letreiro-holder">
+        <div className="cadastro-letreiro-texto">
+          <span>CADASTRE-SE  &nbsp;</span>
+          <span>CADASTRE-SE  &nbsp;</span>
+          <span>CADASTRE-SE  &nbsp;</span>
+          <span>CADASTRE-SE  &nbsp;</span>
         </div>
       </div>
 

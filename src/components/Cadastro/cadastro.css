@@ -77,7 +77,7 @@
 /* ========================================
     BACKGROUND: TEXTO DESLIZANTE (LETREIRO) - MODIFICADO PARA CADASTRO
 ======================================== */
-.marquee-container {
+.cadastro-letreiro-holder {
   position: absolute;
   top: 22%;
   width: 100%;
@@ -87,7 +87,7 @@
   mask-image: linear-gradient(to right, black 80%, transparent 100%);
 }
 
-.marquee-track {
+.cadastro-letreiro-texto {
   display: inline-block;
   animation: marqueeScrollCadastro 60s linear infinite; /* NOVA ANIMAÇÃO */
   font-size: 220px;

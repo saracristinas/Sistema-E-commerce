@@ -87,7 +87,7 @@
 /* ========================================
    BACKGROUND: TEXTO DESLIZANTE (LETREIRO)
 ======================================== */
-.marquee-container {
+.letreiro-holder {
   position: absolute;
   top: 22%;
   width: 100%;
@@ -97,7 +97,7 @@
   mask-image: linear-gradient(to right, black 80%, transparent 100%);
 }
 
-.marquee-track {
+.letreiro-texto {
   display: inline-block;
   animation: marqueeScroll 60s linear infinite;
   font-size: 220px;
