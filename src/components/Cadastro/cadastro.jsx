@@ -14,7 +14,7 @@ import cloud3 from "../../assets/home-cloud-3.png.webp";
 import stars from "../../assets/stars.png.webp";
 import starsGirando from "../../assets/starsgirando.png.webp";
 import rocks from "../../assets/home-page-orange-rocks.png.webp";
-import rocks2 from "../../assets/home-rocks.png.webp";
+import rocksBreak from "../../assets/home-rocks.png.webp";
 import { useState } from "react";
 
 // ==========================

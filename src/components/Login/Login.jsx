@@ -13,8 +13,10 @@ import cloud2 from "../../assets/home-cloud-2.png.webp";
 import cloud3 from "../../assets/home-cloud-3.png.webp";
 import stars from "../../assets/stars.png.webp";
 import starsGirando from "../../assets/starsgirando.png.webp";
+import starFixed from "../../assets/stars.png.webp";
 import rocks from "../../assets/home-page-orange-rocks.png.webp";
-import rocks2 from "../../assets/home-rocks.png.webp";
+import rocksBreak from "../../assets/home-rocks.png.webp";
+import planetaAmarelo from "../../assets/planet-yellow-sativa.png.webp";
 
 // ==========================
 // COMPONENTE LOGIN
@@ -42,16 +44,16 @@ function Login() {
         {/* Estrelas fixas no fundo */}
         <div className="stars">
           <img
-            src="https://hellocopilot.com/wp-content/themes/copilot/img/home-page/webp/stars.png.webp"
+            src={starFixed}
             className="img-bg"
             alt="stars"
           />
         </div>
 
-        {/* Rochas da frente (acima de tudo)*/}
+        {/* Rochas da frente cacos amarelo e laranja (acima de tudo)*/}
         <div className="front-rocks-holder">
           <img
-            src="https://hellocopilot.com/wp-content/themes/copilot/img/home-page/webp/home-rocks.png.webp"
+            src={rocksBreak}
             alt="frontal rocks"
             className="img-bg front-rocks"
           />
@@ -78,11 +80,11 @@ function Login() {
           <img src={spaceship} className="spaceship-img" alt="spaceship" />
         </div>
 
-        {/* Planeta girando com atmosfera */}
+        {/* Planeta amarelo girando com atmosfera */}
         <div className="planet-wrapper">
           <img src={atmosfera} className="planet-atmosphere" alt="atmosphere" />
           <img
-            src="https://hellocopilot.com/wp-content/themes/copilot/img/takeoff/webp/planet-yellow-sativa.png.webp"
+            src={planetaAmarelo}
             className="planet-img"
             alt="planet"
           />
@@ -102,10 +104,10 @@ function Login() {
       {/* Texto em background animado (LETREIRO) */}
       <div className="letreiro-holder">
         <div className="letreiro-texto">
-          <span>BEM VINDO&nbsp;</span>
-          <span>BEM VINDO&nbsp;</span>
-          <span>BEM VINDO&nbsp;</span>
-          <span>BEM VINDO&nbsp;</span>
+          <span>BEM VINDO  &nbsp;</span>
+          <span>BEM VINDO  &nbsp;</span>
+          <span>BEM VINDO  &nbsp;</span>
+          <span>BEM VINDO  &nbsp;</span>
         </div>
       </div>
 
