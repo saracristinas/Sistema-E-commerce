@@ -1,136 +1,84 @@
 //commit teste
 
+import { useLayoutEffect, useRef } from 'react';
+import './Home.css';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import product_data from '../../Data/Products.jsx';
 
-import { useLayoutEffect, useRef } from 'react'
-import './Home.css'
-import relogioPretoImg from "../../assets/relogio-preto.svg";
-import relogioRoseImg from "../../assets/relogio-rose.svg";
-import relogioUltraImg from "../../assets/relogio-ultra.svg";
-import relogio2 from "../../assets/relogio2.svg";
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// Registra plugins do GSAP
+gsap.registerPlugin(ScrollTrigger);
 
-function Home() {
-
-  const el = useRef();
-  const tl = useRef();
-
-  useLayoutEffect(() => {
-
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.to(".relogio", {
-      x: 0,
-      opacity: 1,
-      rotate: "0deg",
-      scrollTrigger:{
-        trigger: ".items",
-       // markers: true,
-        start: "top 520px",
-        end: "bottom 600px",
-        scrub: true
-      }
-    })
-
-    return () => {
-      gsap.killTweensOf(".relogio")
-    }
-  }, [])
-
-
-  useLayoutEffect(() => {
-
-    gsap.registerPlugin(ScrollTrigger)
-    const ctx = gsap.context(() => {
-      tl.current = gsap.timeline({
-        scrollTrigger:{
-          trigger:".models-item",
-          scrub: true,
-          // markers: true,
-          start: "top 800px",
-          end: "bottom 900px"
-        }
-      })
-      .fromTo("#model-1", {
-        opacity: 0,
-        y: 160,
-      }, {
-        opacity: 1,
-        y: 0
-      })
-      .fromTo("#model-2", {
-        opacity: 0,
-        y: 160,
-      }, {
-        opacity: 1,
-        y: 0
-      })
-      .fromTo("#model-3", {
-        opacity: 0,
-        y: 160,
-      }, {
-        opacity: 1,
-        y: 0
-      })
-    }, el)
-
-
-    return () => {
-      gsap.killTweensOf(".models-item")
-    }
-
-  }, [])
-
-  return (
-    <div className="container">
-      <div className="area-model">
-        <h1>ITEM 1</h1>
-      </div>
-      <div className="area-model">
-        <h1>ITEM 2</h1>
-      </div>
-
-      <section className="items">
-        <div className="items-content">
-          <img className="relogio" src={relogio2} alt="Relogio AppleWatch" />
+// Componente de Card de Produto
+const ProductCard = ({ product }) => (
+    <div className="card">
+        <div className="card_img">
+            <img src={product.thumb} alt={product.product_name} />
         </div>
-      </section>
-
-      <section className="models-container">
-        <h2 className="title">Qual é o Apple Watch ideal para você?</h2>
-
-        <div className="models-content" ref={el}>
-          <div className="models-item" id="model-1">
-            <img src={relogioPretoImg} alt="Relogio Preto" />
-            <span className="models-tag">Novo</span>
-            <h4 className="models-title">Apple Watch Series 8</h4>
-            <p className="models-description">A partir de <strong>R$ 5.299</strong></p>
-          </div>
-
-          <div className="models-item" id="model-2">
-            <img src={relogioRoseImg} alt="Relogio Rose" />
-            <span className="models-tag">Novo</span>
-            <h4 className="models-title">Apple Watch SE</h4>
-            <p className="models-description">A partir de <strong>R$ 3.399</strong></p>
-          </div>
-
-          <div className="models-item" id="model-3">
-            <img src={relogioUltraImg} alt="Relogio Ultra" />
-            <span className="models-tag">Novo</span>
-            <h4 className="models-title">Apple Watch Ultra</h4>
-            <p className="models-description">A partir de <strong>R$ 10.299</strong></p>
-          </div>
+        <div className="card_header">
+            <h2>{product.product_name}</h2>
+            <p>{product.description}</p>
+            <p className="price">{product.currency}{product.price}</p>
+            <button className="btn">Add to cart</button>
         </div>
-
-      </section>
-
-      <div className="area-model">
-        <h1>ITEM 3</h1>
-      </div>
-      
-      <div className="area-model">
-        <h1>ITEM 4</h1>
-      </div>
     </div>
-  )
+);
+
+// Componente Home
+function Home() {
+    const el = useRef();
+    const tl = useRef();
+
+    useLayoutEffect(() => {
+        gsap.to(".relogio", {
+            x: 0,
+            opacity: 1,
+            rotate: "0deg",
+            scrollTrigger: {
+                trigger: ".items",
+                start: "top 520px",
+                end: "bottom 600px",
+                scrub: true
+            }
+        });
+
+        return () => gsap.killTweensOf(".models-item");
+    }, []);
+
+    return (
+        <div className="app-container">
+            <nav className="navbar">
+                <div className="logo">Rayes.</div>
+                <ul className="nav-links">
+                    <li>Home</li>
+                    <li>Our Products</li>
+                    <li>About Us</li>
+                    <li>Contact</li>
+                </ul>
+                <div className="search-cart">
+                    <i className="fas fa-search"></i>
+                    <i className="fas fa-shopping-basket"></i>
+                </div>
+            </nav>
+            
+            <main className="main-content">
+                <h1 className="section-title">Our Watches</h1>
+                <div className="products-grid">
+                    {product_data.map(product => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+            </main>
+            
+            <footer className="footer">
+                <p>copyright @2020</p>
+                <div className="social-links">
+                    <i className="fab fa-facebook"></i>
+                    <i className="fab fa-instagram"></i>
+                </div>
+            </footer>
+        </div>
+    );
 }
-export default Home
+
+export default Home;
