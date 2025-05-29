@@ -71,5 +71,5 @@ const product_card = [
         currency: "$",
         thumb: "./images/3.png"
     }
-]
+];
 export default product_card;

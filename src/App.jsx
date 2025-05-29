@@ -2,8 +2,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Cadastro from "./components/Cadastro/cadastro";
+import React, { useState } from 'react'; 
+
 
 function App() {
+  const [cart, setCart] = useState([]);
   return (
     <Router>
       <Routes>
