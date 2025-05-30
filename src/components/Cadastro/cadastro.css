@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Amrys ExtraBold";
-  src: url("/fonts/Amrys-ExtraBold.otf") format("opentype");
+  font-family: 'Amrys ExtraBold';
+  src: url('/fonts/Amrys-ExtraBold.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
