@@ -1,4 +1,6 @@
-/* Reset e Base */
+/* ========================= */
+/* RESET E BASE         */
+/* ========================= */
 * {
   margin: 0;
   padding: 0;
@@ -12,19 +14,40 @@ body {
   color: #fff;
 }
 
-/* HOME CONTAINER */
+/* ========================= */
+/* VARIÁVEIS CSS         */
+/* ========================= */
+:root {
+  --primary-color: #fe8033; /* Cor laranja/coral para destaque */
+  --secondary-color: #ff0; /* Amarelo para botões de ação */
+  --background-dark: #272b34; /* Fundo principal escuro */
+  --card-hover-bg: #2b3039; /* Fundo do card ao passar o mouse */
+  --button-default-bg: #2d343e; /* Fundo padrão de botões */
+  --text-light: #fff; /* Cor do texto claro */
+  --text-faded: rgba(255, 255, 255, 0.7); /* Texto com opacidade */
+  --text-dimmed: rgba(255, 255, 255, 0.3); /* Texto mais apagado */
+  --red-error: #ff0000; /* Cor para remoção/erros */
+}
+
+/* ========================= */
+/* HOME CONTAINER        */
+/* ========================= */
 .home-container {
-  background-color: #272b34; /* ✅ Aplica o fundo só na Home */
+  background-color: var(--background-dark);
   min-height: 100vh;
 }
 
-/* HEADER */
+/* ========================= */
+/* HEADER            */
+/* ========================= */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30px 50px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-faded);
+  position: relative; /* Adicionado para posicionar o dropdown */
+  z-index: 10; /* Garante que a navbar fique acima de outros elementos */
 }
 
 .navbar .logo {
@@ -43,14 +66,15 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: color 0.3s;
+  position: relative; /* Essencial para o posicionamento do dropdown */
 }
 
 .navbar ul li:hover {
-  color: #fe8033;
+  color: var(--primary-color);
 }
 
 .search-cart {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-faded);
 }
 
 .search-cart i {
@@ -58,18 +82,78 @@ body {
   margin-left: 15px;
 }
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-top: 100px;
-  z-index: 1;
+.cart-count {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  font-size: 0.7em;
+  padding: 2px 6px;
+  border-radius: 50%;
   position: relative;
+  top: -8px;
+  right: 5px;
 }
 
+/* ========================= */
+/* DROPDOWN DE CATEGORIAS */
+/* ========================= */
+.dropdown-toggle {
+  /* Estilo do item "Categorias" na navbar */
+}
+
+.category-dropdown {
+  position: absolute;
+  top: 100%; /* Posiciona abaixo do item "Categorias" */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translateX(-50%); /* Ajuste para centralização */
+  background-color: var(--background-dark); /* Fundo do dropdown */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  min-width: 180px; /* Largura mínima do dropdown */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  list-style: none;
+  padding: 10px 0;
+  z-index: 1000; /* Garante que fique acima de outros elementos */
+  display: flex; /* Para os itens ficarem em coluna */
+  flex-direction: column;
+  opacity: 0; /* Começa invisível */
+  visibility: hidden; /* Esconde do fluxo do DOM */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Transição suave */
+}
+
+/* Quando o mouse entra no dropdown-toggle (li pai) */
+.dropdown-toggle:hover .category-dropdown {
+  opacity: 1; /* Torna visível */
+  visibility: visible; /* Torna visível */
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  color: var(--text-faded);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--card-hover-bg); /* Fundo ao passar o mouse no item */
+  color: var(--primary-color);
+}
+
+.dropdown-item.active {
+  background-color: var(--primary-color); /* Categoria ativa */
+  color: var(--text-light);
+  font-weight: bold;
+}
+
+.dropdown-item.error {
+  color: var(--red-error);
+  font-size: 0.9em;
+  cursor: default;
+}
+
+
+/* ========================= */
+/* MAIN CONTENT        */
+/* ========================= */
 .main-content {
   width: 100%;
   padding: 0 20px;
@@ -77,7 +161,7 @@ body {
   position: relative;
 }
 
-/* Título grande de fundo */
+/* Título grande de fundo (Dinâmico e em uma única linha) */
 .section-title {
   background-color: transparent;
   position: absolute;
@@ -88,9 +172,26 @@ body {
   top: 50px;
   left: 50%;
   transform: translate(-50%, -50%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* CARD */
+/* ========================= */
+/* CARDS            */
+/* ========================= */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 100px; /* Retornou ao valor original, sem a seção de filtro abaixo da navbar */
+  z-index: 1;
+  position: relative;
+}
+
 .card {
   background-color: transparent;
   border-radius: 15px;
@@ -102,14 +203,14 @@ body {
 }
 
 .card:hover {
-  background-color: #2b3039;
+  background-color: var(--card-hover-bg);
   transform: scale(1.05);
   cursor: pointer;
 }
 
 .card:hover .btn {
-  background-color: #fe8033;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--text-light);
 }
 
 .card_img img {
@@ -139,23 +240,25 @@ body {
 .card_header p {
   font-size: 13px;
   text-align: center;
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--text-dimmed);
   margin: 5px 0;
 }
 
 .price {
   font-size: 22px;
-  color: #fe8033;
+  color: var(--primary-color);
   margin-top: 5px;
 }
 
-/* BOTÃO */
+/* ========================= */
+/* BOTÕES            */
+/* ========================= */
 .btn {
   width: 130px;
   height: 35px;
   font-size: 14px;
   border-radius: 35px;
-  background-color: #2d343e;
+  background-color: var(--button-default-bg);
   color: rgba(255, 255, 255, 0.5);
   display: flex;
   justify-content: center;
@@ -167,29 +270,33 @@ body {
 }
 
 .btn-remove {
-  background-color: #fe8033;
+  background-color: var(--primary-color);
   border-radius: 35px;
-  color: #fff;
+  color: var(--text-light);
   cursor: pointer;
   font-size: 0.8rem;
   padding: 6px 10px;
   margin-top: 6px;
+  border: none;
   transition: background-color 0.5s ease, color 0.4s ease;
 }
 
 .btn-remove:hover {
-  background-color: #ff0000;
-  color: #fff;
+  background-color: var(--red-error);
+  color: var(--text-light);
 }
 
+/* ========================= */
+/* CARRINHO SIDEBAR    */
+/* ========================= */
 .cart-sidebar {
   position: fixed;
   top: 0;
   right: -350px;
   width: 350px;
   height: 100vh;
-  background-color: #272b34;
-  color: white;
+  background-color: var(--background-dark);
+  color: var(--text-light);
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
   padding: 20px;
   transition: right 0.3s ease-in-out;
@@ -207,12 +314,24 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: transparent;
+  margin-bottom: 20px;
+}
+
+.cart-header h2 {
+  color: var(--text-light);
+}
+
+.cart-header button {
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.5em;
+  cursor: pointer;
 }
 
 .cart-items {
   list-style: none;
   padding: 0;
-  margin-top: 20px;
   overflow-y: auto;
   flex-grow: 1;
 }
@@ -223,6 +342,9 @@ body {
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
+  background-color: var(--card-hover-bg);
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .cart-item-info {
@@ -231,6 +353,16 @@ body {
   justify-content: center;
   flex-grow: 1;
   margin-left: 10px;
+  color: var(--text-light);
+}
+
+.cart-item-info p:first-child {
+  font-weight: bold;
+}
+
+.cart-item-info p:last-child {
+  font-size: 0.9em;
+  color: var(--text-faded);
 }
 
 .cart-item img {
@@ -245,9 +377,45 @@ body {
   text-align: center;
   opacity: 0.6;
   background-color: transparent;
+  color: var(--text-dimmed);
 }
 
-/* FOOTER */
+.cart-summary {
+  padding: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: right;
+  color: var(--text-light);
+  font-size: 1.1em;
+  margin-top: auto;
+}
+
+.cart-summary p {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.btn-checkout {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  background-color: var(--secondary-color);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-checkout:hover {
+  background-color: var(--text-light);
+  color: black;
+}
+
+/* ========================= */
+/* FOOTER           */
+/* ========================= */
 .footer {
   display: flex;
   justify-content: center;
@@ -279,11 +447,13 @@ body {
 }
 
 .social-links i:hover {
-  background-color: #fe8033;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--text-light);
 }
 
-/* RESPONSIVIDADE */
+/* ========================= */
+/* RESPONSIVIDADE      */
+/* ========================= */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -314,6 +484,10 @@ body {
 
   .search-cart {
     margin-top: 10px;
+  }
+
+  .cart-sidebar {
+    width: 100%;
   }
 }
 
