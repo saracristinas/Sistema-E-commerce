@@ -1,6 +1,7 @@
 // src/components/MyOrders.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; // Importe Link também, se for usar a navbar da Home
+import "./MyOrders.css"
 
 function MyOrders() {
   const [orders, setOrders] = useState([]);
@@ -77,8 +78,8 @@ function MyOrders() {
         {!isLoading && !error && orders.length > 0 && (
           <ul className="orders-list">
             {orders.map(order => (
-              <li key={order.orderId} className="order-item">
-                <h3>Pedido #{order.orderId}</h3>
+              <li key={order.id} className="order-item">
+                <h3>Pedido #{order.id}</h3>
                 <p>Data: {new Date(order.createdAt).toLocaleDateString('pt-BR')}</p> {/* Formata a data */}
                 <p>Total: {order.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                 {/* O backend retorna items dentro do pedido, você pode exibi-los aqui */}

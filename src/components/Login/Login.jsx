@@ -1,6 +1,7 @@
 // ==========================
 // IMPORTAÇÕES
 // ==========================
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
@@ -22,14 +23,32 @@ import planetaAmarelo from "../../assets/planet-yellow-sativa.png.webp";
 // COMPONENTE LOGIN
 // ==========================
 function Login() {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const navigate = useNavigate();
 
-  // ==========================
-  // FUNÇÃO: Lidar com o envio do formulário
-  // ==========================
-  function handleLogin(event) {
-    event.preventDefault();
-    navigate("/home");
+  async function handleLogin(e) {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8080/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password: senha }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.mensagem || "Falha no login");
+      }
+
+      const token = await response.text();
+      localStorage.setItem("jwtToken", token);
+      alert("Login realizado com sucesso!");
+      navigate("/home");
+    } catch (error) {
+      alert("Erro: " + error.message);
+    }
   }
 
   // ==========================
@@ -119,8 +138,20 @@ function Login() {
 
         {/* Formulário de login */}
         <form onSubmit={handleLogin} className="login-form">
-          <input type="email" placeholder="E-mail" required />
-          <input type="password" placeholder="Senha" required />
+          <input
+            type="email"
+            placeholder="E-mail"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            required
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
           <button type="submit">Entrar</button>
         </form>
 

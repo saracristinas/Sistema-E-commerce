@@ -30,25 +30,39 @@ function Cadastro() {
   // ==========================
   // FUNÇÃO: Lidar com o envio do formulário de cadastro
   // ==========================
-  function handleCadastro(event) {
-    event.preventDefault();
+  
+async function handleCadastro(event) {
+  event.preventDefault();
 
-    // Aqui você pode adicionar a lógica para enviar os dados de cadastro
-    // para o seu backend ou realizar outras ações necessárias.
-
-    if (senha !== confirmarSenha) {
-      alert("As senhas não coincidem.");
-      return;
-    }
-
-    console.log("Dados de cadastro:", { nome, email, senha });
-    alert("Cadastro realizado com sucesso!");
-    navigate("/login"); // Redireciona para a página de login após o cadastro
+  if (senha !== confirmarSenha) {
+    alert("As senhas não coincidem.");
+    return;
   }
 
-  // ==========================
-  // JSX RENDERIZADO
-  // ==========================
+  try {
+    const response = await fetch("http://localhost:8080/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: nome,
+        email,
+        password: senha,
+        confirmPassword: confirmarSenha,
+      }),
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.mensagem || "Erro ao cadastrar.");
+    }
+
+    alert("Cadastro realizado com sucesso!");
+    navigate("/login");
+  } catch (error) {
+    alert("Erro: " + error.message);
+  }
+}
+
   return (
     <div className="cadastro-container">
       {/* ==========================
